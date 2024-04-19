@@ -1,5 +1,33 @@
 # Backend com NODE express e TypeORM com JWT
 
+
+Init a npm repository:
+
+```bash
+    npm init --y
+```
+
+Install typescript:
+
+```bash
+    npm i typescript ts-node-dev
+```
+
+Init typescript:
+
+```bash
+    npx tsc --init
+```
+
+### Installing express and its typescript typing
+
+```bash
+    npm i express
+    npm i -D @types/express
+```
+
+## TypeORM
+
 Instalando typeORM (do tutorial do site oficial [neste  link](https://typeorm.io/)):
 
 ```bash
