@@ -2,54 +2,31 @@
 // ex: controller nao pode ter a responsabilidade de alterar o banco de dados,
 // essa responsabilidade é do service
 
-export interface User {
-    name: string,
-    email: string
-}
+import { stringify } from "querystring";
+import { AppDataSource } from "../database";
+import { User } from "../entities/User";
+import { UserRepository } from "../repositories/UserRepository"
 
-// simulando um banco de dados
-const db = [
-    {
-        name : "jose",
-        email : "jose@jose.com"
-    }
-]
+
 
 export class UserService {
-    db: User[] 
+    private userRepository : UserRepository; // manager do repositorio para alterar o bd
 
-    // this way we can mock a db for testing pourposes while allowing the code to reproduce in production environment
-    constructor(database = db) {
-        this.db = database
+    constructor( 
+        userRepository = new UserRepository(AppDataSource.manager)
+    ) {
+        // caso userRepository nao seja passado por parametro, usa o valor de AppDataSource
+        this.userRepository = userRepository;
     }
 
-    createUser = (name : string , email : string) => {
-        const user = {
-            name, 
-            email
-        }
-        
-        this.db.push(user);
-        console.log("Adicionado: ", this.db);
+    // create user do services, cria um usuario usando o user repository que foi passado na instanciaçao do repositorio. por padrao, usa o appdatasource.manager como manager.
+    createUser = async (name : string , email : string, password : string) : Promise<User> => {
+       const user = new User(name, email, password);
+        return this.userRepository.createUser(user);
     }
 
-    getUsers = () => {
-        return this.db;
-    }
-
-    deleteUsers = (user : string) : boolean => {
-        let success = false;
-        this.db.forEach(us => {
-            
-            if (us.name == user) {
-                
-                const index = this.db.indexOf(us);
-
-                this.db.splice(index, 1);
-                success = true;
-            }
-        });
-        return success;
+    getUser = () => {
+      
     }
 
 }

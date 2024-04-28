@@ -6,7 +6,6 @@ import { AppDataSource } from './database';
 // inicialiando o servidor
 const server = express();
 
-// parei no minuto 10:25
 
 
 server.use(express.json()) // permite trabalhar com json

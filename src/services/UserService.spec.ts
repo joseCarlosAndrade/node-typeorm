@@ -1,14 +1,28 @@
-import { UserService, User } from "./UserService"
+// import { User } from "../entities/User";
+import { UserService } from "./UserService"
+
+// copiando o endereco de user repository para mock. faz com que ele procure o mock ao inves de chamar o user repository real quando estiver esta importacao
+jest.mock("../repositories/UserRepository")
+
+// mokando user repository
+const mockUserRepository = require('../repositories/UserRepository');
 
 describe('UserService', () => {
-    // mocking a database for testing enviornment
-    const mockdb : User[] = []
-    const userService = new UserService(mockdb);
 
-    it('Should add a new user', () => {
-        const mockConsole = jest.spyOn(global.console, 'log');
-        userService.createUser('jose', 'jose@jose');
+    const userService = new UserService(mockUserRepository);
 
-        expect(mockConsole).toHaveBeenCalled()
+    const mockUser = {
+        name: 'jose',
+        email : 'jose@jose',
+        password : 'minhasenha'
+    }
+
+    it('Should add a new user', async () => {
+        mockUserRepository.createUser = jest.fn().mockImplementation(() => Promise.resolve(mockUser))
+        
+        const response = await userService.createUser(mockUser.name, mockUser.email, mockUser.password);
+
+        expect(mockUserRepository.createUser).toHaveBeenCalled();
+        expect(response).toMatchObject(mockUser)
     })
 })

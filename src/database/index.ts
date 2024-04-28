@@ -7,6 +7,7 @@ export const AppDataSource = new DataSource({
     migrations : [
         "./src/database/migrations/*.ts"
     ],
+    synchronize : true
 })
 
 

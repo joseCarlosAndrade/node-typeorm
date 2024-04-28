@@ -1,5 +1,5 @@
 import { EntityManager } from "typeorm";
-import { AppDataSource } from "../database";
+// import { AppDataSource } from "../database";
 import { User } from "../entities/User";
 
 export class UserRepository {
@@ -7,12 +7,20 @@ export class UserRepository {
     private manager: EntityManager
 
     constructor(
-        manager = AppDataSource.manager // pegar o manager do nosso datasource
+        manager : EntityManager // pegar o manager do nosso datasource
     ) {
         this.manager = manager;
     }
 
-    createUser =  async (user : User) => { // funcoes de manipulaçoes sao assincronas
+    createUser =  async (user : User) : Promise<User> => { // funcoes de manipulaçoes sao assincronas
         return this.manager.save(user);
+    }
+
+    getuser = async (userId: string) : Promise<User | null>  => {
+        return this.manager.findOne(User, { // find just one element of type User where user_id matches userId
+            where : {
+                user_id : userId
+            }
+        })
     }
 }
