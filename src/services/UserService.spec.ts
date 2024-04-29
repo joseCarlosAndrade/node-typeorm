@@ -18,10 +18,12 @@ describe('UserService', () => {
     }
 
     it('Should add a new user', async () => {
+        // implementando createUser do nosso mock user repository
         mockUserRepository.createUser = jest.fn().mockImplementation(() => Promise.resolve(mockUser))
         
         const response = await userService.createUser(mockUser.name, mockUser.email, mockUser.password);
 
+        // validando retornos
         expect(mockUserRepository.createUser).toHaveBeenCalled();
         expect(response).toMatchObject(mockUser)
     })
