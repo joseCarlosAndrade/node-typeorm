@@ -1,6 +1,6 @@
 import exp from "constants";
 import { getMockEntityManager } from "../__mocks__/mockEntityManager.mock";
-import { User } from "../entities/User";
+import { User } from "../database/entities/User";
 import { UserRepository } from "./UserRepository";
 import { EntityManager } from "typeorm";
 

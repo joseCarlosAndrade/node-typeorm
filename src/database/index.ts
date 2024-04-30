@@ -5,7 +5,7 @@ export const AppDataSource = new DataSource({
     type : "sqlite",
     database : "./src/database/db.sqlite",
     entities: [
-        "./src/entities/*.{ts,js}"
+        "./src/database/entities/*.{ts,js}"
     ],
     migrations : [
         "./src/database/migrations/*.ts"

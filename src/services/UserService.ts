@@ -4,7 +4,7 @@
 
 import { stringify } from "querystring";
 import { AppDataSource } from "../database";
-import { User } from "../entities/User";
+import { User } from "../database/entities/User";
 import { UserRepository } from "../repositories/UserRepository"
 
 

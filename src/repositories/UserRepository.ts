@@ -1,6 +1,6 @@
 import { EntityManager } from "typeorm";
 // import { AppDataSource } from "../database";
-import { User } from "../entities/User";
+import { User } from "../database/entities/User";
 
 export class UserRepository {
     // funcao do typeorm manage, para gerenciar, deletar, criar, editar
