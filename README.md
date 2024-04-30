@@ -245,3 +245,14 @@ export class UserRepository {
 }
 
 ```
+
+## Rodando projeto
+
+Após criação e configuração, validação com testes etc das rotas com seus respectivos callbacks, iniciamos a aplicação rodando primeiramente as migrations para sincronizar a base de dados, e, em seguida, podemos inciar o servidor para aceitar requisições.
+
+```bash
+
+    npm run migration:run
+    npm run dev
+
+```

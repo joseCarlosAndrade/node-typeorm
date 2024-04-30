@@ -13,6 +13,7 @@ export class UserRepository {
     }
 
     createUser =  async (user : User) : Promise<User> => { // funcoes de manipulaçoes sao assincronas
+        console.log("saving: ", user)
         return this.manager.save(user);
     }
 

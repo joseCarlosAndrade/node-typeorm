@@ -4,10 +4,13 @@ import { DataSource } from "typeorm";
 export const AppDataSource = new DataSource({
     type : "sqlite",
     database : "./src/database/db.sqlite",
+    entities: [
+        "./src/entities/*.{ts,js}"
+    ],
     migrations : [
         "./src/database/migrations/*.ts"
     ],
-    synchronize : true
+    // synchronize : true // nao use synchronize, da sempre ruim 
 })
 
 

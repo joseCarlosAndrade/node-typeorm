@@ -8,7 +8,7 @@ export class User1712970138198 implements MigrationInterface {
                 name : 'users', // nome da tabela, usada para decorador entities
                 columns : [
                     {
-                        name: 'id_user',
+                        name: 'user_id',
                         type: 'string',
                         isPrimary : true // indica que eh a coluna primaria
                     },

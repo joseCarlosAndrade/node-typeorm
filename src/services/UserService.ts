@@ -21,7 +21,7 @@ export class UserService {
 
     // create user do services, cria um usuario usando o user repository que foi passado na instanciaçao do repositorio. por padrao, usa o appdatasource.manager como manager.
     createUser = async (name : string , email : string, password : string) : Promise<User> => {
-       const user = new User(name, email, password);
+        const user = new User(name, email, password);
         return this.userRepository.createUser(user);
     }
 

@@ -3,6 +3,9 @@ import { UserService } from "./UserService"
 
 // copiando o endereco de user repository para mock. faz com que ele procure o mock ao inves de chamar o user repository real quando estiver esta importacao
 jest.mock("../repositories/UserRepository")
+jest.mock("../database", () => {
+    initialize: jest.fn() // mockando a funcao initialize para evitar warnings
+})
 
 // mokando user repository
 const mockUserRepository = require('../repositories/UserRepository');
